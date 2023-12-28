@@ -1,0 +1,70 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf12222023"
+		},
+		"Adls12222023_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Adls12222023'"
+		},
+		"Adls12232023_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Adls12232023'"
+		},
+		"Adls12222023_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12222023.dfs.core.windows.net/"
+		},
+		"Adls12232023_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sa12232023.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf12222023_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Adls12222023_accountKey": {
+						"value": "[parameters('Adls12222023_accountKey')]"
+					},
+					"Adls12232023_accountKey": {
+						"value": "[parameters('Adls12232023_accountKey')]"
+					},
+					"Adls12222023_properties_typeProperties_url": {
+						"value": "[parameters('Adls12222023_properties_typeProperties_url')]"
+					},
+					"Adls12232023_properties_typeProperties_url": {
+						"value": "[parameters('Adls12232023_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
