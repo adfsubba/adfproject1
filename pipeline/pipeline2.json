@@ -80,8 +80,7 @@
 								"sink": {
 									"type": "DelimitedTextSink",
 									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings",
-										"copyBehavior": "FlattenHierarchy"
+										"type": "AzureBlobFSWriteSettings"
 									},
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
@@ -129,7 +128,7 @@
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2023-12-28T05:57:30Z"
+		"lastPublishTime": "2023-12-28T06:50:26Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
