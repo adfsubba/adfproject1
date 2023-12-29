@@ -1,0 +1,60 @@
+{
+	"name": "csvtojson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Adls12232023",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Sampledata.csv",
+				"fileSystem": "dest12232023"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "quiz_sport_q1_question",
+				"type": "String"
+			},
+			{
+				"name": "quiz_sport_q1_options'][",
+				"type": "String"
+			},
+			{
+				"name": "quiz_sport_q1_answer",
+				"type": "String"
+			},
+			{
+				"name": "quiz_maths_q1_question",
+				"type": "String"
+			},
+			{
+				"name": "quiz_maths_q1_options'][",
+				"type": "String"
+			},
+			{
+				"name": "quiz_maths_q1_answer",
+				"type": "String"
+			},
+			{
+				"name": "quiz_maths_q2_question",
+				"type": "String"
+			},
+			{
+				"name": "quiz_maths_q2_options'][",
+				"type": "String"
+			},
+			{
+				"name": "quiz_maths_q2_answer",
+				"type": "String"
+			}
+		]
+	}
+}
