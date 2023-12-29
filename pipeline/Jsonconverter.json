@@ -99,14 +99,6 @@
 							},
 							{
 								"source": {
-									"path": "$['$[\\'quiz\\'][\\'sport\\'][\\'q1\\'][\\'options\\'][0]']"
-								},
-								"sink": {
-									"name": "quiz_sport_q1_options']["
-								}
-							},
-							{
-								"source": {
 									"path": "$['quiz']['maths']['q1']['options'][0]"
 								},
 								"sink": {
