@@ -37,7 +37,84 @@
 							"fileExtension": ".csv"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['quiz']['sport']['q1']['question']"
+								},
+								"sink": {
+									"name": "quiz_sport_q1_question"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['sport']['q1']['options'][0]"
+								},
+								"sink": {
+									"name": "quiz_sport_q1_options']["
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['sport']['q1']['answer']"
+								},
+								"sink": {
+									"name": "quiz_sport_q1_answer"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['maths']['q1']['question']"
+								},
+								"sink": {
+									"name": "quiz_maths_q1_question"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['maths']['q1']['options'][0]"
+								},
+								"sink": {
+									"name": "quiz_maths_q1_options']["
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['maths']['q1']['answer']"
+								},
+								"sink": {
+									"name": "quiz_maths_q1_answer"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['maths']['q2']['question']"
+								},
+								"sink": {
+									"name": "quiz_maths_q2_question"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['maths']['q2']['options'][0]"
+								},
+								"sink": {
+									"name": "quiz_maths_q2_options']["
+								}
+							},
+							{
+								"source": {
+									"path": "$['quiz']['maths']['q2']['answer']"
+								},
+								"sink": {
+									"name": "quiz_maths_q2_answer"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
