@@ -1,5 +1,5 @@
 {
-	"name": "pipeline3",
+	"name": "csvtojson",
 	"properties": {
 		"activities": [
 			{
@@ -46,6 +46,18 @@
 								},
 								"sink": {
 									"path": "$"
+								}
+							},
+							{
+								"source": {
+									"name": "quiz_sport_q1_options'][",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "quiz_sport_q1_answer",
+									"type": "String"
 								}
 							}
 						]
