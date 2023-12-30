@@ -204,6 +204,37 @@
 						}
 					},
 					{
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Metatest12302023",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
 						"name": "ForEach1",
 						"type": "ForEach",
 						"dependsOn": [
@@ -239,7 +270,7 @@
 											"type": "DelimitedTextSource",
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
-												"recursive": false,
+												"recursive": true,
 												"wildcardFileName": "*",
 												"enablePartitionDiscovery": false
 											},
@@ -294,37 +325,6 @@
 									]
 								}
 							]
-						}
-					},
-					{
-						"name": "Get Metadata1",
-						"type": "GetMetadata",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Metatest12302023",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"fieldList": [
-								"childItems"
-							],
-							"storeSettings": {
-								"type": "AzureBlobFSReadSettings",
-								"recursive": true,
-								"enablePartitionDiscovery": false
-							},
-							"formatSettings": {
-								"type": "DelimitedTextReadSettings"
-							}
 						}
 					}
 				],
@@ -970,7 +970,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
-					"firstRowAsHeader": true,
+					"firstRowAsHeader": false,
 					"quoteChar": "\""
 				},
 				"schema": [
@@ -1018,7 +1018,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
-					"firstRowAsHeader": true,
+					"firstRowAsHeader": false,
 					"quoteChar": "\""
 				},
 				"schema": [
