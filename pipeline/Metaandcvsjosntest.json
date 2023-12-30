@@ -92,10 +92,6 @@
 									"storeSettings": {
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
-										"wildcardFileName": {
-											"value": "@item().Name",
-											"type": "Expression"
-										},
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -126,13 +122,25 @@
 							"inputs": [
 								{
 									"referenceName": "Metaandcsvjsontestsrc",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Metaandcvsjsontestparam": {
+											"value": "@item().Name",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "Metaandcsvjsontestdest",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Metaandcvsjosntestdestparam": {
+											"value": "@item().Name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}

@@ -5,12 +5,20 @@
 			"referenceName": "Adls12222023",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Metaandcvsjsontestparam": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "src12222023"
+				"fileSystem": {
+					"value": "@dataset().Metaandcvsjsontestparam",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
