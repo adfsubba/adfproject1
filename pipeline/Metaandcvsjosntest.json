@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "DS12222023",
+						"referenceName": "DS12242023src",
 						"type": "DatasetReference"
 					},
 					"fieldList": [],
