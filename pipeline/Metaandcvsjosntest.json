@@ -20,7 +20,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@endswith(item().name,'csv')",
+						"value": "@endswith(item().name,'json')",
 						"type": "Expression"
 					}
 				}
@@ -125,7 +125,7 @@
 									"referenceName": "Metaandcsvjsontestsrc",
 									"type": "DatasetReference",
 									"parameters": {
-										"Metaandcvsjsontestparam": {
+										"srcparam": {
 											"value": "@item().name",
 											"type": "Expression"
 										}
@@ -137,7 +137,7 @@
 									"referenceName": "Metaandcsvjsontestdest",
 									"type": "DatasetReference",
 									"parameters": {
-										"Metaandcvsjosntestdestparam": {
+										"destparam": {
 											"value": "@item().name",
 											"type": "Expression"
 										}

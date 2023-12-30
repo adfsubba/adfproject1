@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Metaandcvsjsontestparam": {
+			"srcparam": {
 				"type": "string"
 			}
 		},
@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileSystem": {
-					"value": "@dataset().Metaandcvsjsontestparam",
+					"value": "@dataset().srcparam",
 					"type": "Expression"
 				}
 			},
