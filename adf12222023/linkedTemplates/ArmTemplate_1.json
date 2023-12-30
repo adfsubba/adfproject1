@@ -13,62 +13,42 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Metaandcvsjosntest')]",
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Get Metadata1",
-						"type": "GetMetadata",
+						"name": "Lookup1",
+						"description": "This is first Lookup",
+						"type": "Lookup",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
-							"retry": 0,
+							"retry": 1,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
 						},
 						"userProperties": [],
 						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
 							"dataset": {
-								"referenceName": "Metaandcsvjsontestsrc",
+								"referenceName": "multimeta",
 								"type": "DatasetReference",
 								"parameters": {}
 							},
-							"fieldList": [
-								"childItems"
-							],
-							"storeSettings": {
-								"type": "AzureBlobFSReadSettings",
-								"enablePartitionDiscovery": false
-							},
-							"formatSettings": {
-								"type": "DelimitedTextReadSettings"
-							}
-						}
-					},
-					{
-						"name": "Filter1",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "Get Metadata1",
-								"dependencyConditions": [
-									"Completed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get Metadata1').output.childItems",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@endswith(item().name,'csv')",
-								"type": "Expression"
-							}
+							"firstRowOnly": false
 						}
 					},
 					{
@@ -76,7 +56,7 @@
 						"type": "ForEach",
 						"dependsOn": [
 							{
-								"activity": "Filter1",
+								"activity": "Lookup1",
 								"dependencyConditions": [
 									"Completed"
 								]
@@ -85,10 +65,9 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('Filter1').output.childItems",
+								"value": "@activity('Lookup1').output.value",
 								"type": "Expression"
 							},
-							"isSequential": true,
 							"activities": [
 								{
 									"name": "Copy data1",
@@ -138,16 +117,26 @@
 									},
 									"inputs": [
 										{
-											"referenceName": "Metaandcsvjsontestsrc",
+											"referenceName": "multiparamsrc",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"srcparam": {
+													"value": "@item().src",
+													"type": "Expression"
+												}
+											}
 										}
 									],
 									"outputs": [
 										{
-											"referenceName": "Metaandcsvjsontestdest",
+											"referenceName": "multiparamdest",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"destparam": {
+													"value": "@item().dest",
+													"type": "Expression"
+												}
+											}
 										}
 									]
 								}
@@ -158,7 +147,8 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-12-28T06:50:26Z"
 			},
 			"dependsOn": []
 		}
