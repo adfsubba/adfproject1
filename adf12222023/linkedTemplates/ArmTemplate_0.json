@@ -211,6 +211,228 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Adls12232023",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "dest12232023"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "DeptNo",
+						"type": "String"
+					},
+					{
+						"name": "Dname",
+						"type": "String"
+					},
+					{
+						"name": "Location",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Adls12232023')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Adls12222023",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Sampledata.json",
+						"fileSystem": "srcmeta"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"quiz": {
+							"type": "object",
+							"properties": {
+								"sport": {
+									"type": "object",
+									"properties": {
+										"q1": {
+											"type": "object",
+											"properties": {
+												"question": {
+													"type": "string"
+												},
+												"options": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"answer": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								},
+								"maths": {
+									"type": "object",
+									"properties": {
+										"q1": {
+											"type": "object",
+											"properties": {
+												"question": {
+													"type": "string"
+												},
+												"options": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"answer": {
+													"type": "string"
+												}
+											}
+										},
+										"q2": {
+											"type": "object",
+											"properties": {
+												"question": {
+													"type": "string"
+												},
+												"options": {
+													"type": "array",
+													"items": {
+														"type": "string"
+													}
+												},
+												"answer": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Adls12222023')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Adls12222023",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "src1"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Adls12222023')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/csvtojson')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Adls12232023",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Sampledata.csv",
+						"fileSystem": "dest12232023"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "quiz_sport_q1_question",
+						"type": "String"
+					},
+					{
+						"name": "quiz_sport_q1_options'][",
+						"type": "String"
+					},
+					{
+						"name": "quiz_sport_q1_answer",
+						"type": "String"
+					},
+					{
+						"name": "quiz_maths_q1_question",
+						"type": "String"
+					},
+					{
+						"name": "quiz_maths_q1_options'][",
+						"type": "String"
+					},
+					{
+						"name": "quiz_maths_q1_answer",
+						"type": "String"
+					},
+					{
+						"name": "quiz_maths_q2_question",
+						"type": "String"
+					},
+					{
+						"name": "quiz_maths_q2_options'][",
+						"type": "String"
+					},
+					{
+						"name": "quiz_maths_q2_answer",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Adls12232023')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/multimeta')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -306,6 +528,152 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Adls12222023')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Jsonconverter')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['quiz']['sport']['q1']['question']"
+										},
+										"sink": {
+											"name": "quiz_sport_q1_question"
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['sport']['q1']['options'][0]"
+										},
+										"sink": {
+											"name": "quiz_sport_q1_options']["
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['sport']['q1']['answer']"
+										},
+										"sink": {
+											"name": "quiz_sport_q1_answer"
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['maths']['q1']['question']"
+										},
+										"sink": {
+											"name": "quiz_maths_q1_question"
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['maths']['q1']['options'][0]"
+										},
+										"sink": {
+											"name": "quiz_maths_q1_options']["
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['maths']['q1']['answer']"
+										},
+										"sink": {
+											"name": "quiz_maths_q1_answer"
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['maths']['q2']['question']"
+										},
+										"sink": {
+											"name": "quiz_maths_q2_question"
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['maths']['q2']['options'][0]"
+										},
+										"sink": {
+											"name": "quiz_maths_q2_options']["
+										}
+									},
+									{
+										"source": {
+											"path": "$['quiz']['maths']['q2']['answer']"
+										},
+										"sink": {
+											"name": "quiz_maths_q2_answer"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Json1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DS12232023",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Json1')]",
+				"[concat(variables('factoryId'), '/datasets/DS12232023')]"
 			]
 		},
 		{
