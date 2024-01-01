@@ -40,4 +40,18 @@ jobs:
       with:
         name: ExportedArmTemplate # (4) use the same artifact name you used in the previous export step
         path: ${{github.workspace}}/ExportedArmTemplate
+
+ 
+        
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    
+ # we 1st download the previously uploaded artifact so we can leverage it later in the release job     
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: ExportedArmTemplate # (5) Artifact name 
+       
  
