@@ -15,10 +15,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": {
+				"fileName": {
 					"value": "@dataset().srcparam",
 					"type": "Expression"
-				}
+				},
+				"fileSystem": "src12222023"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
