@@ -386,10 +386,11 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": {
+						"fileName": {
 							"value": "@dataset().destparam",
 							"type": "Expression"
-						}
+						},
+						"fileSystem": "dest12232023"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -434,10 +435,11 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": {
+						"fileName": {
 							"value": "@dataset().srcparam",
 							"type": "Expression"
-						}
+						},
+						"fileSystem": "src12222023"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -812,7 +814,7 @@
 								"value": "@activity('Filter1').output.Value",
 								"type": "Expression"
 							},
-							"isSequential": false,
+							"isSequential": true,
 							"activities": [
 								{
 									"name": "Copy data1",
@@ -832,7 +834,6 @@
 											"storeSettings": {
 												"type": "AzureBlobFSReadSettings",
 												"recursive": true,
-												"wildcardFileName": "*",
 												"enablePartitionDiscovery": false
 											},
 											"formatSettings": {
