@@ -19,7 +19,15 @@
 					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "datalinkec1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "join1"
@@ -49,7 +57,26 @@
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1"
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          fruit as string,",
+				"          size as string,",
+				"          color as string,",
+				"          quiz as (sport as (q1 as (question as string, options as string[], answer as string)), maths as (q1 as (question as string, options as string[], answer as string), q2 as (question as string, options as string[], answer as string))),",
+				"          firstName as string,",
+				"          lastName as string,",
+				"          gender as string,",
+				"          age as integer,",
+				"          address as (streetAddress as string, city as string, state as string, postalCode as string),",
+				"          phoneNumbers as (type as string, number as string)[]",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
