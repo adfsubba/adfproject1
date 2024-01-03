@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'Adls12232023'"
 		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
 		"Adls12222023_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://sa12222023.dfs.core.windows.net/"
@@ -55,6 +59,9 @@
 					},
 					"Adls12232023_accountKey": {
 						"value": "[parameters('Adls12232023_accountKey')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
 					"Adls12222023_properties_typeProperties_url": {
 						"value": "[parameters('Adls12222023_properties_typeProperties_url')]"
