@@ -72,6 +72,7 @@
 				"          address as (streetAddress as string, city as string, state as string, postalCode as string),",
 				"          phoneNumbers as (type as string, number as string)[]",
 				"     ),",
+				"     filePattern:'Dataflowdata',",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
