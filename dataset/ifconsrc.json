@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText2",
+	"name": "ifconsrc",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Adls12222023",

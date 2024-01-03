@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText3",
+	"name": "ifcondest",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Adls12232023",
@@ -22,7 +22,7 @@
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
-			"firstRowAsHeader": false,
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []
