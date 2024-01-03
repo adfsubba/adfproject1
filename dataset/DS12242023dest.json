@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "dest12232023"
+				"fileName": "Emp.csv",
+				"fileSystem": "dest1"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
