@@ -157,7 +157,7 @@
 												"type": "DatasetReference",
 												"parameters": {
 													"srcparam": {
-														"value": "@activity('Get Metadata1').output.value",
+														"value": "@activity('Lookup1').output.SRC",
 														"type": "Expression"
 													}
 												}
@@ -169,7 +169,7 @@
 												"type": "DatasetReference",
 												"parameters": {
 													"destparam": {
-														"value": "@activity('Lookup1').output.value",
+														"value": "@activity('Lookup1').output.DEST",
 														"type": "Expression"
 													}
 												}
