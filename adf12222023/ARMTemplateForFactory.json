@@ -1272,7 +1272,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"dataset": {
-											"referenceName": "DelimitedText2",
+											"referenceName": "ifconsrc",
 											"type": "DatasetReference",
 											"parameters": {
 												"srcparam": {
@@ -1307,7 +1307,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"expression": {
-											"value": "@equals(length(item().childitems),0)",
+											"value": "@equals(length(activity('Get Metadata1').output.childItems),0)",
 											"type": "Expression"
 										},
 										"ifFalseActivities": [
@@ -1359,11 +1359,11 @@
 												},
 												"inputs": [
 													{
-														"referenceName": "DelimitedText2",
+														"referenceName": "ifconsrc",
 														"type": "DatasetReference",
 														"parameters": {
 															"srcparam": {
-																"value": "@activity('Get Metadata1').output.childItems",
+																"value": "@activity('Get Metadata1').output.value",
 																"type": "Expression"
 															}
 														}
@@ -1371,16 +1371,27 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "DelimitedText3",
+														"referenceName": "ifcondest",
 														"type": "DatasetReference",
 														"parameters": {
 															"destparam": {
-																"value": "@activity('Get Metadata1').output.childItems",
+																"value": "@activity('Lookup1').output.value",
 																"type": "Expression"
 															}
 														}
 													}
 												]
+											}
+										],
+										"ifTrueActivities": [
+											{
+												"name": "Wait1",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 3
+												}
 											}
 										]
 									}
@@ -1396,12 +1407,12 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/multimeta')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedText3')]"
+				"[concat(variables('factoryId'), '/datasets/ifconsrc')]",
+				"[concat(variables('factoryId'), '/datasets/ifcondest')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"name": "[concat(parameters('factoryName'), '/ifconsrc')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1436,7 +1447,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"name": "[concat(parameters('factoryName'), '/ifcondest')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1461,7 +1472,7 @@
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
-					"firstRowAsHeader": false,
+					"firstRowAsHeader": true,
 					"quoteChar": "\""
 				},
 				"schema": []
