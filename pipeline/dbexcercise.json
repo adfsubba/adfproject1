@@ -17,6 +17,12 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"additionalColumns": [
+							{
+								"name": "empno",
+								"value": "$$COLUMN:empno"
+							}
+						],
 						"sqlReaderQuery": "select * from dbo.dept where deptno=101",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
