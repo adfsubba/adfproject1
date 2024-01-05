@@ -19,8 +19,11 @@
 						"type": "AzureSqlSource",
 						"additionalColumns": [
 							{
-								"name": "empno",
-								"value": "$$COLUMN:empno"
+								"name": "Execution_Time",
+								"value": {
+									"value": "@pipeline().TriggerTime",
+									"type": "Expression"
+								}
 							}
 						],
 						"sqlReaderQuery": "select * from dbo.dept where deptno=101",
@@ -41,6 +44,43 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "deptno",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "deptno",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "dname",
+									"type": "String",
+									"physicalType": "char"
+								},
+								"sink": {
+									"name": "dname",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Execution_Time",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Execution_Time",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -51,7 +91,10 @@
 				"inputs": [
 					{
 						"referenceName": "AzureSqlTable1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "dept"
+						}
 					}
 				],
 				"outputs": [
@@ -60,6 +103,51 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('Copy data1').output.rowsread,1)",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "zipcopy",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
+						}
+					]
+				}
 			}
 		],
 		"annotations": []

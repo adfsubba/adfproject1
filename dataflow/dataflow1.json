@@ -34,11 +34,7 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          deptno as integer,",
-				"          dname as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     batchSize: 10,",
