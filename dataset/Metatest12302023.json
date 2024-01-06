@@ -1,8 +1,8 @@
 {
-	"name": "DS12242023dest",
+	"name": "Metatest12302023",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Adls12232023",
+			"referenceName": "Adls12222023",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,15 +10,26 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Emp.csv",
-				"fileSystem": "dest1"
+				"fileSystem": "src12222023"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+		"schema": [
+			{
+				"name": "DeptNo",
+				"type": "String"
+			},
+			{
+				"name": "Dname",
+				"type": "String"
+			},
+			{
+				"name": "Location",
+				"type": "String"
+			}
+		]
+	}
 }
