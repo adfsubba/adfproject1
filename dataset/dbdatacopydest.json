@@ -1,5 +1,5 @@
 {
-	"name": "DS12242023dest",
+	"name": "dbdatacopydest",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Adls12232023",
@@ -10,8 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Emp.csv",
-				"fileSystem": "dest1"
+				"fileSystem": "dest12232023"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
@@ -19,6 +18,5 @@
 			"quoteChar": "\""
 		},
 		"schema": []
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

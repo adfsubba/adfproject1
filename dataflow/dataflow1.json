@@ -1,0 +1,80 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS12242023dest",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "datalinkec1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     batchSize: 10,",
+				"     isolationLevel: 'READ_COMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          Empno as short,",
+				"          Ename as string,",
+				"          Deptno as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source1, source2 join(source1@deptno == source2@Deptno,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          fruit as string,",
+				"          size as string,",
+				"          color as string,",
+				"          quiz as (sport as (q1 as (question as string, options as string[], answer as string)), maths as (q1 as (question as string, options as string[], answer as string), q2 as (question as string, options as string[], answer as string))),",
+				"          firstName as string,",
+				"          lastName as string,",
+				"          gender as string,",
+				"          age as integer,",
+				"          address as (streetAddress as string, city as string, state as string, postalCode as string),",
+				"          phoneNumbers as (type as string, number as string)[]",
+				"     ),",
+				"     filePattern:'Dataflowdata',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
